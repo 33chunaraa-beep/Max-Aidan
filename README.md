@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+//<!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
@@ -323,7 +323,7 @@
                         <h1 class="font-fredoka text-2xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-amber-300 bg-clip-text text-transparent">
                             BLOOKET 1K SIM
                         </h1>
-                        <p id="header-subtitle" class="text-xs text-slate-400 font-semibold">1,000 Blooks • Arcade Games • Supremes: Aidan & Maxim Malhaire</p>
+                        <p id="header-subtitle" class="text-xs text-slate-400 font-semibold">1,000 Blooks • Arcade Games • Supreme "Aidan"</p>
                     </div>
                 </div>
 
@@ -384,7 +384,7 @@
                     <h2 class="font-fredoka text-2xl sm:text-3xl font-bold text-white flex items-center gap-2">
                         <span>📦</span> Open Packs & Collect Blooks
                     </h2>
-                    <p class="text-slate-300 text-sm mt-1">Explore 50 themed packs! Pull the mythical 0.001% Supreme Blooks: <strong class="text-amber-300">Aidan 👑✨ & Maxim Malhaire 🌟✨</strong></p>
+                    <p class="text-slate-300 text-sm mt-1">Explore 50 themed packs! Pull the mythical 0.001% Supreme Blook: <strong class="text-amber-300">Aidan 👑✨</strong></p>
                 </div>
                 <div class="flex items-center gap-3 w-full md:w-auto">
                     <div class="relative w-full md:w-64">
@@ -431,7 +431,7 @@
                         <option value="Legendary">Legendary</option>
                         <option value="Chroma">Chroma</option>
                         <option value="Mystical">Mystical</option>
-                        <option value="Supreme">Supreme (Aidan & Maxim)</option>
+                        <option value="Supreme">Supreme (Aidan)</option>
                     </select>
 
                     <label class="flex items-center justify-center gap-2 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm font-semibold cursor-pointer text-slate-300 hover:text-white">
@@ -1009,7 +1009,7 @@
         </div>
     </div>
 
-    <!-- MODAL 2: SUPREME PULL CELEBRATION MODAL -->
+    <!-- MODAL 2: AIDAN SUPREME PULL CELEBRATION MODAL -->
     <div id="modal-aidan" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-xl flex items-center justify-center p-4">
         <div class="aidan-card w-full max-w-lg rounded-3xl p-8 text-center shadow-2xl space-y-6 text-white relative">
             <div class="animate-bounce text-6xl">👑✨</div>
@@ -1017,15 +1017,15 @@
                 SUPREME UNLOCKED!
             </h2>
             <div class="bg-slate-950/80 rounded-2xl p-6 border-2 border-amber-400/80 space-y-3">
-                <div id="supreme-modal-emoji" class="text-7xl animate-pulse">🌟✨</div>
-                <h3 id="supreme-modal-name" class="font-fredoka text-3xl font-bold text-amber-300">Maxim Malhaire</h3>
+                <div class="text-7xl animate-pulse">👑✨</div>
+                <h3 class="font-fredoka text-3xl font-bold text-amber-300">Aidan</h3>
                 <span class="inline-block px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-pink-600 text-white shadow-md">
                     SUPREME (0.001% Drop Rate)
                 </span>
-                <p class="text-xs text-slate-300">You pulled one of the rarest Blooks in the entire simulator!</p>
+                <p class="text-xs text-slate-300">You pulled the rarest Blook in the entire simulator!</p>
             </div>
-            <button id="supreme-modal-btn" onclick="closeModal('modal-aidan')" class="px-8 py-3.5 rounded-2xl font-fredoka font-bold text-lg bg-amber-400 hover:bg-amber-300 text-slate-950 border-b-4 border-amber-600 active:translate-y-0.5 transition-all shadow-xl">
-                CLAIM Supreme Blook 👑
+            <button onclick="closeModal('modal-aidan')" class="px-8 py-3.5 rounded-2xl font-fredoka font-bold text-lg bg-amber-400 hover:bg-amber-300 text-slate-950 border-b-4 border-amber-600 active:translate-y-0.5 transition-all shadow-xl">
+                CLAIM Aidan Ali Chunara 👑
             </button>
         </div>
     </div>
@@ -1148,19 +1148,7 @@
                 const rarity = rarityDistribution[i - 1];
                 const blookId = blookCounter++;
 
-                if (pack.id === 50 && i === 19) {
-                    ALL_BLOOKS.push({
-                        id: 999,
-                        name: "Maxim Malhaire",
-                        packId: 50,
-                        packName: pack.name,
-                        rarity: "Supreme",
-                        emoji: "🌟✨",
-                        dropChance: 0.001,
-                        sellValue: 500000,
-                        isSupreme: true
-                    });
-                } else if (blookId === 1000 || (pack.id === 50 && i === 20)) {
+                if (blookId === 1000 || (pack.id === 50 && i === 20)) {
                     ALL_BLOOKS.push({
                         id: 1000,
                         name: "Aidan Ali Chunara",
@@ -1498,9 +1486,9 @@
                 triggerPackOpen(pack.id, count);
             };
 
-            let pulledSupremeBlook = null;
+            let pulledAidan = false;
             results.forEach((blook) => {
-                if (blook.isSupreme) pulledSupremeBlook = blook;
+                if (blook.isSupreme) pulledAidan = true;
                 const cardWrapper = document.createElement("div");
                 cardWrapper.className = `w-32 h-44 sm:w-36 sm:h-48 rounded-2xl p-3 flex flex-col items-center justify-between border-2 text-center transition-all ${
                     blook.isSupreme ? 'aidan-card' : 'bg-slate-950 border-slate-700 glow-' + blook.rarity.toLowerCase()
@@ -1519,10 +1507,7 @@
             });
 
             modal.classList.remove("hidden");
-            if (pulledSupremeBlook) {
-                document.getElementById("supreme-modal-emoji").innerText = pulledSupremeBlook.emoji;
-                document.getElementById("supreme-modal-name").innerText = pulledSupremeBlook.name;
-                document.getElementById("supreme-modal-btn").innerText = `CLAIM ${pulledSupremeBlook.name} ✨`;
+            if (pulledAidan) {
                 confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
                 setTimeout(() => document.getElementById("modal-aidan").classList.remove("hidden"), 600);
             } else if (results.some(r => ['Legendary', 'Chroma', 'Mystical'].includes(r.rarity))) {
@@ -3395,18 +3380,3 @@
     </script>
 </body>
 </html>
-
-
-Changes Made:
-Added Blook Definition:
-Maxim Malhaire added into ALL_BLOOKS with rarity: "Supreme", dropChance: 0.001, sellValue: 500000, isSupreme: true, and emoji 🌟✨.
-Pack Drop Logic:
-Celestial / Supreme Pack (Pack 50) now features both Maxim Malhaire and Aidan Ali Chunara in the Supreme drop pool at 0.001% drop rate.
-Dynamic Supreme Unlock Modal:
-The celebration popup dynamically updates its title, name (supreme-modal-name), emoji (supreme-modal-emoji), and claim button whenever either Supreme blook is pulled.
-UI Filters & Labels:
-Updated shop description, inventory rarity dropdown (Supreme (Aidan & Maxim)), and header title.
-Your The Awty International School chats aren’t used to improve our models. Gemini isn’t human. It can make mistakes, so double-check it. Your privacy & Gemini
-Opens in a new window
-
-
